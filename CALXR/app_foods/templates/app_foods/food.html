@@ -1,0 +1,17 @@
+{% extends 'components/base.html' %}
+{% block site_title %}{{ food.title }} : {% endblock %}
+{% block content %}
+{% if food is not None%}
+<div>
+    <h3>{{food.title}}</h3>
+    <h3>{{food.cal}} cal</h3>
+    {% if food.is_premium == True %}
+    <h3>พิเศษ</h3>
+    {% endif %}
+    <p>ข้าวไม่เท่าไหร่ชานมอร่อยมาก</p>
+</div>
+{%else%}
+    <p>ไม่พบเมนูนี้</p>
+{% endif %}
+
+{% endblock %}

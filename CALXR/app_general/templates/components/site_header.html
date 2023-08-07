@@ -1,0 +1,14 @@
+ {% load static %}
+ <!DOCTYPE html>  
+    <header class="head" style = "background-color:darkorange;">
+        <div class="head-image">
+          <img src="{% static 'app_general/sicon.png' %}" width="13%">
+        </div>
+        <div class="head-text">
+          <a href ="{% url 'home' %}">CAlX-PROJECT</a>
+          <a href ="{% url 'BMR'%}">BMR</a>
+          <a href ="{% url 'foods' %}">เมนูอาหาร</a>
+          <a href ="{% url 'about' %}">เกี่ยวกับ</a>
+        </div>
+    </header>
+</html> 

@@ -1,0 +1,23 @@
+{% extends 'components/base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'app_general/hometext.css' %}"> 
+<link rel="stylesheet" href="{% static 'app_general/logoxcal.css' %}">
+<div class="logo">
+  <img class="logoimage" src="{% static 'app_general/LOGO-Xcal.jpg' %}">
+</div>
+  <p class="topic">PROJECT-CALX</p>
+  <p class="subtopic">ดูเเลสุขภาพกันด้วยนะคร้าบบ</p>
+  <p class="subtopic">Your BMR is</p>
+  <p>{{ bmr.calculated_bmr }}</p>
+  <p class="ranbutt"><a href="{% url 'ranfood' %}" class="butt">random</a></p>
+
+  <h1>Calculated BMR</h1>
+  <ul>
+      {% for bmr in realBMR %}
+          <li>Calculated BMR: {{ bmr.calculated_bmr }}</li>
+      {% endfor %}
+  </ul>
+
+{% endblock %}

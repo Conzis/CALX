@@ -1,0 +1,151 @@
+{% extends 'components/base.html' %}
+{% block site_title %}MENU : {% endblock %}
+{% block content %}
+<style>
+     table, th, td {
+       width: 100%;
+       border: 3px solid;
+       border-collapse: collapse;
+     }
+</style>
+<link rel="stylesheet" href="styles.css">
+<div class="container">
+     <center>
+     <h1>RANDOM FOOD</h1>
+     <button onclick="randid(1)">MENU1</button>
+     <button onclick="randid(2)">MENU2</button>
+     <button onclick="randid(3)">MENU3</button>
+     </center>
+     <br />
+     <table>
+          <thead>
+               <tr>
+                    <th>Menu</th>
+                    <th>Check</th>
+                    <th>Calories</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <td>
+                         <div id="foodContainer1">
+                              {% for x in foodid %}
+                                   <p data-id="{{ x.id }}" data-cal="{{ x.cal }}" style="display: none;">{{ x.title }}</p>
+                              {% endfor %}
+                         </div>
+                         <div id="idContainer1"></div>
+                    </td>
+                    <td>
+                         <button id="checkButton1" onclick="toggleCalories(1)">ข้าวหนึ่งจาน</button>
+                    </td>
+                    <td>
+                         <p id="foodCal1">0</p>
+                    </td>
+               </tr>
+               <tr>
+                    <td>
+                         <div id="foodContainer2">
+                              {% for x in foodid %}
+                                   <p data-id="{{ x.id }}" data-cal="{{ x.cal }}" style="display: none;">{{ x.title }}</p>
+                              {% endfor %}
+                         </div>
+                         <div id="idContainer2"></div>
+                    </td>
+                    <td>
+                         <button id="checkButton2" onclick="toggleCalories(2)">ข้าวหนึ่งจาน</button>
+                    </td>
+                    <td>
+                         <p id="foodCal2">0</p>
+                    </td>
+               </tr>
+               <tr>
+                    <td>
+                         <div id="foodContainer3">
+                              {% for x in foodid %}
+                                   <p data-id="{{ x.id }}" data-cal="{{ x.cal }}" style="display: none;">{{ x.title }}</p>
+                              {% endfor %}
+                         </div>
+                         <div id="idContainer3"></div>
+                    </td>
+                    <td>
+                         <button id="checkButton3" onclick="toggleCalories(3)">ข้าวหนึ่งจาน</button>
+                    </td>
+                    <td>
+                         <p id="foodCal3">0</p>
+                    </td>
+               </tr>
+          </tbody>
+     </table>
+
+     <p id="calTotal"></p>
+     <script type="text/javascript">
+          let xeno1 = 0, xeno2 = 0, xeno3 = 0;
+          let totalCalories = 0;
+      
+          function randid(btnNumber) {
+              let foodContainerId = "foodContainer" + btnNumber;
+              let idContainerId = "idContainer" + btnNumber;
+              let foodCalId = "foodCal" + btnNumber;
+              let foodCal = document.getElementById(foodCalId);
+      
+              switch (btnNumber) {
+                  case 1:
+                      xeno1 = Math.round(Math.floor(Math.random() * 50));
+                      displayMatchingFood(xeno1, foodContainerId, idContainerId, foodCal);
+                      break;
+                  case 2:
+                      xeno2 = Math.round(Math.floor(Math.random() * 50));
+                      displayMatchingFood(xeno2, foodContainerId, idContainerId, foodCal);
+                      break;
+                  case 3:
+                      xeno3 = Math.round(Math.floor(Math.random() * 50));
+                      displayMatchingFood(xeno3, foodContainerId, idContainerId, foodCal);
+                      break;
+                  default:
+                      break;
+              }
+              calculateTotal();
+          }
+      
+          function calculateTotal() {
+              totalCalories = 0;
+              totalCalories += parseInt(document.getElementById("foodCal1").textContent);
+              totalCalories += parseInt(document.getElementById("foodCal2").textContent);
+              totalCalories += parseInt(document.getElementById("foodCal3").textContent);
+              document.getElementById("calTotal").innerText = "Total Calories: " + totalCalories;
+          }
+      
+          function displayMatchingFood(xenoValue, foodContainerId, idContainerId, foodCal) {
+              let foodContainer = document.getElementById(foodContainerId);
+              let foodItems = foodContainer.getElementsByTagName("p");
+              let idContainer = document.getElementById(idContainerId);
+              idContainer.innerHTML = '';
+      
+              for (let i = 0; i < foodItems.length; i++) {
+                  let foodId = parseInt(foodItems[i].getAttribute("data-id"), 10);
+                  let foodCalValue = parseInt(foodItems[i].getAttribute("data-cal"), 10);
+      
+                  if (foodId === xenoValue) {
+                      foodItems[i].style.display = "block";
+                      foodCal.textContent = foodCalValue;
+                  } else {
+                      foodItems[i].style.display = "none";
+                  }
+              }
+          }
+      
+          function toggleCalories(btnNumber) {
+              let checkButton = document.getElementById("checkButton" + btnNumber);
+              if (!checkButton.classList.contains("checked")) {
+                  totalCalories += 84;
+                  checkButton.classList.add("checked");
+              } else {
+                  totalCalories -= 84;
+                  checkButton.classList.remove("checked");
+              }
+              document.getElementById("calTotal").innerText = "Total Calories: " + totalCalories;
+          }
+      </script>
+      
+</div>
+{% endblock %}

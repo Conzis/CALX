@@ -1,0 +1,16 @@
+{% extends 'components/base.html' %}
+{% block site_title %}MENU : {% endblock %}
+{% block content %}
+<div>
+    <h1>เมนูอาหาร</h1>
+    {% for food in foods %}
+        <div style = "background-color: rgb(227, 117, 15);">
+            <h3><a href= "{% url 'food' food.id %}">{{food.title}}</a></h3>
+            <h3>{{food.cal}} cal</h3>
+            {% if food.is_premium == True %}
+            <h3>พิเศษ</h3>
+        {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
