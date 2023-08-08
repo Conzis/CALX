@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_general.apps.AppGeneralConfig',
     'app_foods.apps.AppFoodsConfig',
-    'app_BMR.apps.AppBmrConfig',
 ]
 
 MIDDLEWARE = [

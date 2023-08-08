@@ -7,7 +7,7 @@
 </head>
 <body>
     <h>Your BMR</h>
-    <Form action="{% url 'BMR' %}" method="post">
+    <Form action="{% url 'Bmr' %}" method="post">
         {% csrf_token %}
         <h>ปริมาณเเคลลอรี่ที่ควรได้รับอย่างน้อยในหนึ่งวัน</h><br>
         {{ form.as_p }}
