@@ -14,7 +14,7 @@ def home(request):
     latest_x = request.session.get('latest_x', None)
     if latest_x:
         calculated_bmr = calculate_BMR(latest_x)
-        calculated_bmr_values.append({'index': "Latest Input", 'bmr': calculated_bmr})
+        calculated_bmr_values.append(calculated_bmr)
 
     return render(request, 'app_general/home.html', {'calculated_bmr_values': calculated_bmr_values})
 

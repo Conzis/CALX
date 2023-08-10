@@ -12,6 +12,8 @@
 <div class="container">
      <center>
      <h1>RANDOM FOOD</h1>
+     p id="calTotal">Total Calories: {{ total_calories }}</p>
+     <p>BMR: {{ calculated_bmr_values.0.bmr }}</p> 
      <button onclick="randid(1)">MENU1</button>
      <button onclick="randid(2)">MENU2</button>
      <button onclick="randid(3)">MENU3</button>
@@ -148,4 +150,6 @@
       </script>
       
 </div>
+
+
 {% endblock %}
