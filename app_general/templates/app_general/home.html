@@ -9,15 +9,12 @@
 </div>
 <p class="topic">PROJECT-CALX</p>
 <p class="subtopic">ดูเเลสุขภาพกันด้วยนะคร้าบบ</p>
-<p class="subtopic">Your BMR is</p>
-<p>{{ calculated_bmr }}</p>
-<p class="ranbutt"><a href="{% url 'ranfood' %}" class="butt">random</a></p>
-
-<h1>Calculated BMR</h1>
-<ul>
+<p class="subtopic">Your BMR is
   {% for calculated_bmr in calculated_bmr_values %}
-  <p>Calculated BMR: {{ calculated_bmr }}</p>
+  {{ calculated_bmr }}
   {% endfor %}
-</ul>
+</p>
+
+<p class="ranbutt"><a href="{% url 'ranfood' %}" class="butt">random</a></p>
 
 {% endblock %}

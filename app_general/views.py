@@ -27,7 +27,7 @@ def Bmr(request):
             x = {
                 'gender': data['gender'],
                 'weight': data['weight'],
-                'height': data['high'],
+                'high': data['high'],
                 'age': data['age']
             }
 
@@ -41,12 +41,8 @@ def Bmr(request):
 
 def calculate_BMR(x):
     if x['gender'] == 'male':
-        calculated_bmr = 66 + (13.7 * x['weight']) + (5 * x['height']) - (6.8 * x['age'])
+        calculated_bmr = 66 + (13.7 * x['weight']) + (5 * x['high']) - (6.8 * x['age'])
     else:
-        calculated_bmr = 655 + (9.6 * x['weight']) + (1.8 * x['height']) - (4.7 * x['age'])
+        calculated_bmr = 655 + (9.6 * x['weight']) + (1.8 * x['high']) - (4.7 * x['age'])
 
     return calculated_bmr
-
-
-
-

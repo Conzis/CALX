@@ -22,3 +22,4 @@ def BMRshow(request):
     mybmr = calculate_BMR
     context = {'mybmr' : mybmr}
     return render(request, 'app_foods/ranfood.html', context,)
+
