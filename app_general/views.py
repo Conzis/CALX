@@ -25,7 +25,7 @@ def Bmr(request):
             x = {
                 'gender': data['gender'],
                 'weight': data['weight'],
-                'high': data['high'],
+                'high': data['weight'],
                 'age': data['age']
             }
 
