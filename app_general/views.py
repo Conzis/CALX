@@ -6,11 +6,10 @@ from app_general.forms import BMRform
 def about(request):
     return render(request, 'app_general/about.html')
 
-latest_x = None  # Store the latest input data
+latest_x = None 
 
 def home(request):
-    calculated_bmr_values = []  # List to store calculated BMR values
-    
+    calculated_bmr_values = []
     latest_x = request.session.get('latest_x', None)
     if latest_x:
         calculated_bmr = calculate_BMR(latest_x)
@@ -31,7 +30,7 @@ def Bmr(request):
                 'age': data['age']
             }
 
-            request.session['latest_x'] = x  # Store the latest input data in the session
+            request.session['latest_x'] = x  
             return HttpResponseRedirect(reverse('home'))
     else:
         form = BMRform()

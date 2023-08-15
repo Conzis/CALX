@@ -1,14 +1,87 @@
- {% load static %}
- <!DOCTYPE html>  
-    <header class="head" style = "background-color:darkorange;">
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .head {
+          display: flex;
+          height: 40px;
+          padding: 0px 10px;
+          white-space: nowrap;
+          background-color: #FF5757;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .head-image {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          padding: 0px 10px;
+        }
+
+        .head-image img {
+            width: 1.67%;
+            position: fixed;
+            top: 0px;
+            right: 10px;
+         }
+
+        .head-text {
+            display: flex;
+            height: 40px;
+            align-items: center;
+          padding: 0px 5px;
+            text-decoration: none;
+        }
+
+        .head-text a {
+          margin-right: 15px;
+          color: rgb(3, 0, 0);
+          text-decoration: none;
+        }
+
+        .head-text a:last-child {
+          margin-right: 0;
+        }
+
+        .head-text a:hover {
+          text-decoration: underline;
+        }
+
+        .head-BMR {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 40px;
+          justify-content: flex-end;
+          margin-right: 50px;
+          font-size: 18px;
+          color: rgb(36, 2, 73);
+        }
+
+        .BMRhead {
+          box-shadow: rgba(140, 140, 140, 0.3) 0px 19px 38px 0px, rgba(0, 0, 0, 0.22) 0px 15px 12px 0px;
+          background-color: rgb(226, 36, 36);
+          border: black solid 3px;
+        }
+    </style>
+</head>
+<body>
+    <header class="head">
         <div class="head-image">
-          <img src="{% static 'app_general/sicon.png' %}" width="13%">
+            <img src="{% static 'app_general/sicon.png' %}">
         </div>
         <div class="head-text">
-          <a href ="{% url 'home' %}">CAlX-PROJECT</a>
-          <a href ="{% url 'Bmr'%}">BMR</a>
-          <a href ="{% url 'foods' %}">เมนูอาหาร</a>
-          <a href ="{% url 'about' %}">เกี่ยวกับ</a>
+            <a href="{% url 'home' %}">CAlX-PROJECT</a>
+            <a href="{% url 'Bmr' %}">BMR</a>
+            <a href="{% url 'foods' %}">เมนูอาหาร</a>
+            <a href="{% url 'about' %}">เกี่ยวกับ</a>
+        </div>
+        <div class="head-BMR">
+            {% for calculated_bmr in calculated_bmr_values %}
+                <p class="BMRhead">BMR: {{ calculated_bmr }}</p>
+            {% endfor %}
         </div>
     </header>
-</html> 
+</body>
+</html>
