@@ -9,5 +9,5 @@ gender_choice =(
 class BMRform(forms.Form):
     gender = forms.ChoiceField(choices = gender_choice, required=True, label="เพศ")
     weight = forms.IntegerField(required=True, label="น้ำหนัก")
-    height = forms.IntegerField(required=True, label="ส่วนสูง")
+    high = forms.IntegerField(required=True, label="ส่วนสูง")
     age = forms.IntegerField(required=True, label="อายุ")
