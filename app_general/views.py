@@ -5,9 +5,8 @@ from app_general.forms import BMRform
 def about(request):
     return render(request, 'app_general/about.html')
 
-latest_x = None 
-
 def home(request):
+    global latest_x  # Add this line
     calculated_bmr_values = []
     latest_x = request.session.get('latest_x', None)
     if latest_x:
@@ -17,6 +16,7 @@ def home(request):
     return render(request, 'app_general/home.html', {'calculated_bmr_values': calculated_bmr_values})
 
 def Bmr(request):
+    global latest_x  # Add this line
     if request.method == 'POST':
         form = BMRform(request.POST)
         if form.is_valid():
