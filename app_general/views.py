@@ -1,6 +1,5 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render,reverse
-from app_foods.models import Food
 from app_general.forms import BMRform
 
 def about(request):
