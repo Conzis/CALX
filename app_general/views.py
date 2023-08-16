@@ -6,7 +6,7 @@ def about(request):
     return render(request, 'app_general/about.html')
 
 def home(request):
-    global latest_x  # Add this line
+    global latest_x  
     calculated_bmr_values = []
     latest_x = request.session.get('latest_x', None)
     if latest_x:
@@ -16,7 +16,7 @@ def home(request):
     return render(request, 'app_general/home.html', {'calculated_bmr_values': calculated_bmr_values})
 
 def Bmr(request):
-    global latest_x  # Add this line
+    global latest_x  
     if request.method == 'POST':
         form = BMRform(request.POST)
         if form.is_valid():
@@ -25,7 +25,7 @@ def Bmr(request):
             x = {
                 'gender': data['gender'],
                 'weight': data['weight'],
-                'height': data['weight'],
+                'height': data['height'],
                 'age': data['age']
             }
 
