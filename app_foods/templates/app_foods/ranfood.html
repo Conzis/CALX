@@ -22,7 +22,7 @@
           <thead>
                <tr>
                     <th>Menu</th>
-                    <th>Check</th>
+                    <th>ข้าวเปล่า</th>
                     <th>Calories</th>
                </tr>
           </thead>
@@ -37,7 +37,7 @@
                          <div id="idContainer1"></div>
                     </td>
                     <td>
-                         <button id="checkButton1" onclick="toggleCalories(1)">ข้าวหนึ่งจาน</button>
+                         <input type="checkbox" id="checkButton1" onchange="toggleCalories(1)">
                     </td>
                     <td>
                          <p id="foodCal1">0</p>
@@ -53,7 +53,7 @@
                          <div id="idContainer2"></div>
                     </td>
                     <td>
-                         <button id="checkButton2" onclick="toggleCalories(2)">ข้าวหนึ่งจาน</button>
+                         <input type="checkbox" id="checkButton2" onchange="toggleCalories(2)">
                     </td>
                     <td>
                          <p id="foodCal2">0</p>
@@ -69,7 +69,7 @@
                          <div id="idContainer3"></div>
                     </td>
                     <td>
-                         <button id="checkButton3" onclick="toggleCalories(3)">ข้าวหนึ่งจาน</button>
+                         <input type="checkbox" id="checkButton3" onchange="toggleCalories(3)">
                     </td>
                     <td>
                          <p id="foodCal3">0</p>
@@ -80,7 +80,6 @@
 
      <p id="calTotal"></p>
      <script type="text/javascript">
-          let xeno1 = 0, xeno2 = 0, xeno3 = 0;
           let totalCalories = 0;
       
           function randid(btnNumber) {
@@ -89,22 +88,7 @@
               let foodCalId = "foodCal" + btnNumber;
               let foodCal = document.getElementById(foodCalId);
       
-              switch (btnNumber) {
-                  case 1:
-                      xeno1 = Math.round(Math.floor(Math.random() * 50));
-                      displayMatchingFood(xeno1, foodContainerId, idContainerId, foodCal);
-                      break;
-                  case 2:
-                      xeno2 = Math.round(Math.floor(Math.random() * 50));
-                      displayMatchingFood(xeno2, foodContainerId, idContainerId, foodCal);
-                      break;
-                  case 3:
-                      xeno3 = Math.round(Math.floor(Math.random() * 50));
-                      displayMatchingFood(xeno3, foodContainerId, idContainerId, foodCal);
-                      break;
-                  default:
-                      break;
-              }
+              displayRandomFood(foodContainerId, idContainerId, foodCal);
               calculateTotal();
           }
       
@@ -116,18 +100,17 @@
               document.getElementById("calTotal").innerText = "Total Calories: " + totalCalories;
           }
       
-          function displayMatchingFood(xenoValue, foodContainerId, idContainerId, foodCal) {
+          function displayRandomFood(foodContainerId, idContainerId, foodCal) {
               let foodContainer = document.getElementById(foodContainerId);
               let foodItems = foodContainer.getElementsByTagName("p");
               let idContainer = document.getElementById(idContainerId);
               idContainer.innerHTML = '';
-      
+              
+              let randomIndex = Math.floor(Math.random() * foodItems.length);
               for (let i = 0; i < foodItems.length; i++) {
-                  let foodId = parseInt(foodItems[i].getAttribute("data-id"), 10);
-                  let foodCalValue = parseInt(foodItems[i].getAttribute("data-cal"), 10);
-      
-                  if (foodId === xenoValue) {
+                  if (i === randomIndex) {
                       foodItems[i].style.display = "block";
+                      let foodCalValue = parseInt(foodItems[i].getAttribute("data-cal"), 10);
                       foodCal.textContent = foodCalValue;
                   } else {
                       foodItems[i].style.display = "none";
@@ -137,18 +120,16 @@
       
           function toggleCalories(btnNumber) {
               let checkButton = document.getElementById("checkButton" + btnNumber);
-              if (!checkButton.classList.contains("checked")) {
-                  totalCalories += 84;
-                  checkButton.classList.add("checked");
+              let foodCal = document.getElementById("foodCal" + btnNumber);
+
+              if (checkButton.checked) {
+                   totalCalories += 84;
               } else {
-                  totalCalories -= 84;
-                  checkButton.classList.remove("checked");
+                   totalCalories -= 84;
               }
+              foodCal.textContent = checkButton.checked ? '84' : '0';
               document.getElementById("calTotal").innerText = "Total Calories: " + totalCalories;
           }
       </script>
-      
 </div>
-
-
 {% endblock %}

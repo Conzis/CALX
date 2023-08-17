@@ -1,10 +1,22 @@
 {% extends 'components/base.html' %}
 {% block site_title %}MENU : {% endblock %}
 {% block content %}
+<style>
+    .menufood {
+        border: 3px solid ;
+        box-shadow: rgba(83, 1, 1, 0.17) 0px -23px 25px 0px inset, rgba(73, 1, 1, 0.15) 0px -36px 30px 0px inset, rgba(60, 1, 1, 0.1) 0px -79px 40px 0px inset, rgba(85, 1, 1, 0.06) 0px 2px 1px, rgba(56, 1, 1, 0.09) 0px 4px 2px, rgba(72, 1, 1, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(72, 1, 1, 0.09) 0px 32px 16px;
+        margin: 10px;
+    }
+
+    .titlemenufood{
+        text-align: center;
+    }
+</style>
+
 <div>
-    <h1>เมนูอาหาร</h1>
+    <h1 class="titlemenufood">เมนูอาหาร</h1>
     {% for food in foods %}
-        <div style = "background-color: rgb(227, 117, 15);">
+        <div class="menufood">
             <h3><a href= "{% url 'food' food.id %}">{{food.title}}</a></h3>
             <h3>{{food.cal}} cal</h3>
             {% if food.is_premium == True %}

@@ -2,9 +2,27 @@
 {% block site_title %}ABOUT{% endblock %}
 {% block content %}
 {% load static %}
+<style>
+    .howto {
+        text-align: center;
+        font-size: 25px;
+        margin: 10px;
+    }
+
+    .howtouse {
+        text-align: center;
+    }
+</style>
 <link rel="stylesheet" href="{% static 'app_general/about1.css' %}"> 
 <div>
     <h2 class="about-title">About PROJECT-CALX</h2>
     <p class="about-title">โปรเจคสำหรับจัดตารางอาหารให้กับนักเรียนโรงเรียนวิทยาศาสตร์จุฬาภรณราชวิทยาลัยเชียงราย</p>
+    <p class="howto">วิธีใช้งาน</p>
+    <p class="howtouse">
+        1.เข้าไปที่เมนู BMR เเล้วกรอกข้อมูล<br/>
+        2.กดปุ่ม GO RANGOM ที่หน้าหลักของเว็บไซต์<br/>
+        3.กดปุ่ม menu เ้สนบนตารางเพื่อสุ่มอาหารที่คุณต้องการ<br/>
+        *หากต้องการข้าวเปล่าให้กดเช็คที่ช่องข้าวเปล่า(มากสุด3จาน)*
+    </p>
 </div>
 {% endblock %}
