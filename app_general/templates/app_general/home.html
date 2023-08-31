@@ -21,7 +21,9 @@
       height: 50px;
       text-align: center;
       font-size: 64px;
-      text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+      color: white;
+      text-shadow: 0 0 3px #000000, 0 0 5px #0000FF;
+      font-family: "Lucida Console", "Courier New", monospace;
     }
 
     .subtopic {
@@ -33,6 +35,7 @@
     .butt {
       text-align: center;
       padding: 10px;
+      font-family: "Lucida Console", "Courier New", monospace;
     }
 
     .ranbutt {
@@ -86,9 +89,9 @@
   <div class="logo">
     <img class="logoimage" src="{% static 'app_general/LOGO-Xcal.jpg' %}">
   </div>
-  <p class="topic">PROJECT-CALX</p>
+  <p class="topic">PROJECT-XCAL</p>
   <p class="subtopic">Choose your menu!!!</p>
-  <p class="butt"><a href="{% url 'ranfood' %}" class="ranbutt">GO RANDOM!</a></p>
+  <p class="butt"><a href="{% url 'ranfood' %}" class="ranbutt">RANDOM!</a></p>
 </body>
 </html>
 {% endblock %}
