@@ -16,6 +16,8 @@
      <button onclick="randid(1)">MENU1</button>
      <button onclick="randid(2)">MENU2</button>
      <button onclick="randid(3)">MENU3</button>
+     <button onclick="increaseNowCal()">Increase Now Calories</button>
+     <button id="resetButton">Reset Now Calories</button>
      </center>
      <br />
      <table>
@@ -79,19 +81,22 @@
      </table>
 
      <p id="calTotal"></p>
+     <p>Now Calories: <span id="nowCalValue">0</span></p>
+
      <script type="text/javascript">
           let totalCalories = 0;
-      
+          let now_cal = 0; // Initialize now_cal to zero
+
           function randid(btnNumber) {
               let foodContainerId = "foodContainer" + btnNumber;
               let idContainerId = "idContainer" + btnNumber;
               let foodCalId = "foodCal" + btnNumber;
               let foodCal = document.getElementById(foodCalId);
-      
+
               displayRandomFood(foodContainerId, idContainerId, foodCal);
               calculateTotal();
           }
-      
+
           function calculateTotal() {
               totalCalories = 0;
               totalCalories += parseInt(document.getElementById("foodCal1").textContent);
@@ -99,13 +104,13 @@
               totalCalories += parseInt(document.getElementById("foodCal3").textContent);
               document.getElementById("calTotal").innerText = "Total Calories: " + totalCalories;
           }
-      
+
           function displayRandomFood(foodContainerId, idContainerId, foodCal) {
               let foodContainer = document.getElementById(foodContainerId);
               let foodItems = foodContainer.getElementsByTagName("p");
               let idContainer = document.getElementById(idContainerId);
               idContainer.innerHTML = '';
-              
+
               let randomIndex = Math.floor(Math.random() * foodItems.length);
               for (let i = 0; i < foodItems.length; i++) {
                   if (i === randomIndex) {
@@ -117,19 +122,38 @@
                   }
               }
           }
-      
+
           function toggleCalories(btnNumber) {
               let checkButton = document.getElementById("checkButton" + btnNumber);
               let foodCal = document.getElementById("foodCal" + btnNumber);
 
+              let foodCalValue = parseInt(foodCal.textContent, 10);
+
               if (checkButton.checked) {
-                   totalCalories += 84;
+                  totalCalories += 84;
+                  foodCalValue += 84;
               } else {
-                   totalCalories -= 84;
+                  totalCalories -= 84;
+                  foodCalValue -= 84;
               }
-              foodCal.textContent = checkButton.checked ? '84' : '0';
+
+              foodCal.textContent = foodCalValue;
               document.getElementById("calTotal").innerText = "Total Calories: " + totalCalories;
           }
-      </script>
+
+          function increaseNowCal() {
+              now_cal += totalCalories;
+              document.getElementById("nowCalValue").textContent = now_cal;
+          }
+
+          function resetNowCal() {
+              now_cal = 0;
+              document.getElementById("nowCalValue").textContent = now_cal;
+          }
+
+          window.onload = function() {
+              document.getElementById("resetButton").addEventListener("click", resetNowCal);
+          }
+     </script>
 </div>
 {% endblock %}
