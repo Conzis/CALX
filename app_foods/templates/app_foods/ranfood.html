@@ -83,9 +83,27 @@
      <p id="calTotal"></p>
      <p>Now Calories: <span id="nowCalValue">0</span></p>
 
+     <!-- Add this script tag to your HTML -->
      <script type="text/javascript">
           let totalCalories = 0;
-          let now_cal = 0; // Initialize now_cal to zero
+          let now_cal = 0;
+
+          // Function to save now_cal to localStorage
+          function saveNowCal() {
+              localStorage.setItem('nowCal', now_cal.toString());
+          }
+
+          // Function to load now_cal from localStorage
+          function loadNowCal() {
+              const savedNowCal = localStorage.getItem('nowCal');
+              if (savedNowCal !== null) {
+                  now_cal = parseInt(savedNowCal);
+                  document.getElementById("nowCalValue").textContent = now_cal;
+              }
+          }
+
+          // Initialize now_cal when the page loads
+          loadNowCal();
 
           function randid(btnNumber) {
               let foodContainerId = "foodContainer" + btnNumber;
@@ -144,11 +162,15 @@
           function increaseNowCal() {
               now_cal += totalCalories;
               document.getElementById("nowCalValue").textContent = now_cal;
+              // This will save the updated now_cal to localStorage
+              saveNowCal();
           }
 
           function resetNowCal() {
               now_cal = 0;
               document.getElementById("nowCalValue").textContent = now_cal;
+              // This will save the updated now_cal to localStorage
+              saveNowCal();
           }
 
           window.onload = function() {
