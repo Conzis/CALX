@@ -32,7 +32,7 @@
                <tr>
                     <td>
                          <div id="foodContainer1">
-                              {% for x in foodid %}
+                              {% for x in foodid|slice:"3:94" %}
                                    <p data-id="{{ x.id }}" data-cal="{{ x.cal }}" style="display: none;">{{ x.title }}</p>
                               {% endfor %}
                          </div>
@@ -48,7 +48,7 @@
                <tr>
                     <td>
                          <div id="foodContainer2">
-                              {% for x in foodid %}
+                              {% for x in foodid|slice:"3:94" %}
                                    <p data-id="{{ x.id }}" data-cal="{{ x.cal }}" style="display: none;">{{ x.title }}</p>
                               {% endfor %}
                          </div>
@@ -64,7 +64,7 @@
                <tr>
                     <td>
                          <div id="foodContainer3">
-                              {% for x in foodid %}
+                              {% for x in foodid|slice:"3:94" %}
                                    <p data-id="{{ x.id }}" data-cal="{{ x.cal }}" style="display: none;">{{ x.title }}</p>
                               {% endfor %}
                          </div>
@@ -83,17 +83,14 @@
      <p id="calTotal"></p>
      <p>Now Calories: <span id="nowCalValue">0</span></p>
 
-     <!-- Add this script tag to your HTML -->
      <script type="text/javascript">
           let totalCalories = 0;
           let now_cal = 0;
 
-          // Function to save now_cal to localStorage
           function saveNowCal() {
               localStorage.setItem('nowCal', now_cal.toString());
           }
 
-          // Function to load now_cal from localStorage
           function loadNowCal() {
               const savedNowCal = localStorage.getItem('nowCal');
               if (savedNowCal !== null) {
@@ -102,7 +99,6 @@
               }
           }
 
-          // Initialize now_cal when the page loads
           loadNowCal();
 
           function randid(btnNumber) {
@@ -130,6 +126,7 @@
               idContainer.innerHTML = '';
 
               let randomIndex = Math.floor(Math.random() * foodItems.length);
+
               for (let i = 0; i < foodItems.length; i++) {
                   if (i === randomIndex) {
                       foodItems[i].style.display = "block";
@@ -162,14 +159,12 @@
           function increaseNowCal() {
               now_cal += totalCalories;
               document.getElementById("nowCalValue").textContent = now_cal;
-              // This will save the updated now_cal to localStorage
               saveNowCal();
           }
 
           function resetNowCal() {
               now_cal = 0;
               document.getElementById("nowCalValue").textContent = now_cal;
-              // This will save the updated now_cal to localStorage
               saveNowCal();
           }
 
