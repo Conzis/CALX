@@ -26,6 +26,7 @@
                     <th>Menu</th>
                     <th>ข้าวเปล่า</th>
                     <th>Calories</th>
+                    <th>Reset</th> <!-- Add a Reset column -->
                </tr>
           </thead>
           <tbody>
@@ -44,6 +45,9 @@
                     <td>
                          <p id="foodCal1">0</p>
                     </td>
+                    <td>
+                         <button onclick="resetFood(1)">Reset</button> <!-- Add Reset button -->
+                    </td>
                </tr>
                <tr>
                     <td>
@@ -60,6 +64,9 @@
                     <td>
                          <p id="foodCal2">0</p>
                     </td>
+                    <td>
+                         <button onclick="resetFood(2)">Reset</button> <!-- Add Reset button -->
+                    </td>
                </tr>
                <tr>
                     <td>
@@ -75,6 +82,9 @@
                     </td>
                     <td>
                          <p id="foodCal3">0</p>
+                    </td>
+                    <td>
+                         <button onclick="resetFood(3)">Reset</button> <!-- Add Reset button -->
                     </td>
                </tr>
           </tbody>
@@ -148,8 +158,8 @@
                   totalCalories += 84;
                   foodCalValue += 84;
               } else {
-                  totalCalories -= 84;
-                  foodCalValue -= 84;
+                  totalCalories -= 84; // Fix typo
+                  foodCalValue -= 84; // Fix typo
               }
 
               foodCal.textContent = foodCalValue;
@@ -160,6 +170,24 @@
               now_cal += totalCalories;
               document.getElementById("nowCalValue").textContent = now_cal;
               saveNowCal();
+          }
+
+          function resetFood(btnNumber) {
+              let foodContainer = document.getElementById("foodContainer" + btnNumber);
+              let foodCal = document.getElementById("foodCal" + btnNumber);
+              let checkButton = document.getElementById("checkButton" + btnNumber);
+
+              // Reset the name and calories
+              let foodItems = foodContainer.getElementsByTagName("p");
+              for (let i = 0; i < foodItems.length; i++) {
+                  foodItems[i].style.display = "none";
+              }
+              foodCal.textContent = "0";
+
+              // Uncheck the checkbox
+              checkButton.checked = false;
+
+              calculateTotal(); // Recalculate total calories
           }
 
           function resetNowCal() {
